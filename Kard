@@ -1,0 +1,7 @@
+res = []
+lst = ['H', 'S', 'C', 'D']
+for i in range(2, 10):
+    for j in range(len(lst)):
+	res.append(str(i) + j)
+
+print(res)

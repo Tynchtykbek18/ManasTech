@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+
+
+image = cv2.imread("/home/tynch/Загрузки/100_0140/DJI_0002.JPG")
+
+if image is None:
+    print('error')
+
+else:
+    h, w, c = image.shape
+    grayscale = np.zeros((h, w), np.uint8)
+    grayscale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        
+    for i in range(h):
+        for j in range(w):
+            grayscale[i, j] = int(sum(image[i, j])/3 )   
+
+    cv2.imshow('img', grayscale)
+    cv2.waitKey(0)
+    cv2.destroyAllWindow()

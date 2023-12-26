@@ -1,0 +1,47 @@
+import cv2
+
+
+cam = cv2.VideoCapture(0)
+
+
+while(True):
+    
+    _, image = cam.read()
+    height, width, _ = image.shape
+
+    text = "Tynchtykbek"
+
+    x, y = 10, image.shape[0] - 10  # Нижний левый угол (10 пикселей от левого края, 10 пикселей от нижнего края)
+
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    font_scale = 0.5
+    text_color = (255, 255, 255)  # Белый
+    thickness = 1
+    cv2.putText(image, text, (x, y), font, font_scale, text_color, thickness)    
+   
+
+    rectangles = [
+        (0, 0, width // 2, height // 2),
+        (width // 2, 0, width, height // 2),
+        (0, height // 2, width // 2, height),
+        (width // 2, height // 2, width, height)
+    ]
+
+    # Начертите прямоугольники
+    for rect in rectangles:
+        x1, y1, x2, y2 = rect
+        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+
+    # Вычислите и начертите центральный прямоугольник
+    center_x = width // 4
+    center_y = height // 4
+    center_width = width // 2
+    center_height = height // 2
+
+    cv2.rectangle(image, (center_x, center_y), (center_x + center_width, center_y + center_height), (0, 0, 255), 2)
+
+    cv2.imshow('video', image)
+    if cv2.waitKey(500) == 27: 
+            break
+
+    
