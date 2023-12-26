@@ -54,4 +54,4 @@ image_path = 'your_image_path'
 get_dji_meta(image_path)
 extract_exif_data(image_path)
 print(get_dji_meta(image_path))
-print('t')
+
